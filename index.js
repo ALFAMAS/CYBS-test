@@ -83,15 +83,10 @@ router.get('/cybs/payment', async (req, res) => {
         override_custom_cancel_page: 'http://localhost:1337/callback/success'
     };
 
-    // Calculate the signature
     data.signature = sign(data);
 
     try {
-        // Post to external URL
-        const response = await axios.post(EXTERNAL_URL,
-            // new URLSearchParams(data)
-            data
-            ,
+        const response = await axios.post(EXTERNAL_URL, data,
             {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
